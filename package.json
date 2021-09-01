@@ -1,0 +1,19 @@
+{
+  "name": "depth_finder",
+  "version": "1.0.0",
+  "description": "Finds the depth of arrays, key-value objects, or other types",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "author": "Rick Gladwin",
+  "license": "ISC",
+  "dependencies": {
+    "tsc": "^2.0.3",
+    "typescript": "^4.4.2"
+  },
+  "dev-dependencies": {
+
+  }
+}
