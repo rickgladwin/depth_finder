@@ -4,19 +4,26 @@
   "description": "Finds the depth of arrays, key-value objects, or other types",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "tsc"
   },
   "author": "Rick Gladwin",
   "license": "ISC",
-  "dev-dependencies": {},
+  "dev-dependencies": {
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.3"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/rickgladwin/depth_finder.git"
   },
   "dependencies": {
+    "mongoose": "^5.13.14",
+    "ts-jest": "^28.0.1",
     "tsc": "^2.0.3",
-    "typescript": "^4.4.2",
-    "mongoose": "^5.13.14"
+    "typescript": "^4.6.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.5.0"
   }
 }
