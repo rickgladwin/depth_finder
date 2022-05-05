@@ -1,12 +1,13 @@
+import { Types } from "mongoose";
 
 // Types that can be handled successfully by the getDepth() function.
 // Add a new set of expectations to helpers.test.ts for additional types
 // before adding the new types here.
 type fathomableObject =
-    string | number | boolean | null | {} |
-    (string | number | boolean | null | object)[] |
-    {[key: string]: (string | number | boolean | null | {[key: string]: (string | number | boolean | null)})} |
-    {[key: number]: (string | number | boolean | null | {[key: number]: (string | number | boolean | null)})}
+    string | number | boolean | null | Types.ObjectId | {} |
+    (string | number | boolean | null | Types.ObjectId | object)[] |
+    {[key: string]: (string | number | boolean | null | Types.ObjectId | {[key: string]: (string | number | boolean | null | Types.ObjectId)})} |
+    {[key: number]: (string | number | boolean | null | Types.ObjectId | {[key: number]: (string | number | boolean | null | Types.ObjectId)})}
 
 
 /**
@@ -38,6 +39,7 @@ export const isKeyValueObject = (testObject: unknown) => {
     return (
         testObject !== null &&
         typeof testObject === 'object' &&
+        !(testObject instanceof Types.ObjectId) &&
         Array.isArray(testObject) === false &&
         //@ts-ignore
         !!Object.keys(testObject).length

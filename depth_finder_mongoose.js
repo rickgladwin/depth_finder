@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isDate = exports.compare = exports.isKeyValueObject = exports.getDepth = exports.getArrayDepth = void 0;
+const mongoose_1 = require("mongoose");
 /**
  * Gets the depth of an Array (maximum level of nesting for all elements)
  */
@@ -29,6 +30,7 @@ const isKeyValueObject = (testObject) => {
     // console.log(`%%% isKeyValueObject called on`, testObject);
     return (testObject !== null &&
         typeof testObject === 'object' &&
+        !(testObject instanceof mongoose_1.Types.ObjectId) &&
         Array.isArray(testObject) === false &&
         //@ts-ignore
         !!Object.keys(testObject).length);
