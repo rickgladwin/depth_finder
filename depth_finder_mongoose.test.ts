@@ -230,6 +230,11 @@ describe('compare', () => {
             dataTypeExample1: ['value 1', 'value 2'],
             dataTypeExample2: ['value 3', 'value 4'],
         },
+        {
+            dataTypeName: 'Array vs String',
+            dataTypeExample1: ['value1', 'value2'],
+            dataTypeExample2: 'some string',
+        }
     ]
 
     describe('compares values with basic data types', () => {
