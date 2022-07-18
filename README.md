@@ -2,7 +2,7 @@
 
 A simple utility to calculate the depth of arrays, key-value objects, etc.
 
-![coverage: 100%](https://img.shields.io/badge/coverage-100%25-brightgreen) ![version: 1.0.0](https://img.shields.io/badge/version-1.0.0-blue)
+![coverage: 100%](https://img.shields.io/badge/coverage-100%25-brightgreen) ![version: 1.0.1](https://img.shields.io/badge/version-1.0.1-blue)
 
 
 ## Definitions
