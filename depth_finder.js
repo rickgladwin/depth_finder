@@ -45,7 +45,6 @@ exports.isKeyValueObject = isKeyValueObject;
  * String
  * Symbol
  * Date
- * mongoose.Types.ObjectId
  * Key-value object (POJO)
  * Array
  */
@@ -71,7 +70,7 @@ const compare = (item1, item2) => {
         }
     }
     else if (typeof item1 === 'object' && typeof item2 === 'object') {
-        if (item1.length !== item2.length) {
+        if (Object.keys(item1).length !== Object.keys(item2).length) {
             comparisonResult = false;
         }
         else {
@@ -90,7 +89,18 @@ const compare = (item1, item2) => {
             }
         }
     }
+    else if (typeof item1 === 'symbol' && typeof item2 === 'symbol') {
+        // NOTE: symbols are unique, even if they are constructed using an identical seed, e.g.
+        // let symbol1 = Symbol('one');
+        // let symbol2 = Symbol('one');
+        // symbol1 == symbol1 // true
+        // symbol1 == symbol2 // false
+        // symbol1 === symbol1 // true
+        // symbol1 === symbol1 // false
+        return item1 === item2;
+    }
     else {
+        console.log(`Object.is(${item1}, ${item2}) = ${Object.is(item1, item2)}`);
         comparisonResult = Object.is(item1, item2);
     }
     return comparisonResult;

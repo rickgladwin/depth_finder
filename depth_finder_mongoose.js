@@ -73,7 +73,7 @@ const compare = (item1, item2) => {
         }
     }
     else if (typeof item1 === 'object' && typeof item2 === 'object') {
-        if (item1.length !== item2.length) {
+        if (Object.keys(item1).length !== Object.keys(item2).length) {
             comparisonResult = false;
         }
         else {

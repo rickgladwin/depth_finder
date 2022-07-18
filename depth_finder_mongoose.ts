@@ -78,7 +78,7 @@ export const compare = (item1: any, item2: any) => {
             }
         }
     } else if (typeof item1 === 'object' && typeof item2 === 'object') {
-        if (item1.length !== item2.length) {
+        if (Object.keys(item1).length !== Object.keys(item2).length) {
             comparisonResult = false;
         } else {
             // get an array of [key,value] arrays

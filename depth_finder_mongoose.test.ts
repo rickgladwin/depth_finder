@@ -1,5 +1,55 @@
-import { compare, getDepth, isDate, isKeyValueObject } from "./depth_finder_mongoose";
+import { compare, getDepth, isDate, isKeyValueObject, getArrayDepth } from "./depth_finder_mongoose";
 import { Types } from "mongoose";
+
+
+describe('getArrayDepth', () => {
+    it('returns n for an array of depth n', () => {
+        const arrayOfDepth1 = [
+            'hello',
+            'there',
+            1
+        ];
+        const arrayOfDepth2 = [
+            'hello', [
+                'well',
+                'hello',
+                2
+            ]
+        ];
+        const arrayOfDepth5 = [
+            '', [
+                '', [
+                    '', [
+                        '', '', [
+                            'this',
+                            'is',
+                            'depth',
+                            5
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        expect(getArrayDepth(arrayOfDepth1)).toEqual(1);
+        expect(getArrayDepth(arrayOfDepth2)).toEqual(2);
+        expect(getArrayDepth(arrayOfDepth5)).toEqual(5);
+    });
+
+    const nonArrayExamples = [
+        'some string',
+        {key1: 'value 1', key2: 23},
+        Date.now(),
+        54367,
+        Symbol('a'),
+        true,
+    ];
+
+    it('returns 0 for non-array entities', () => {
+        for (const example in nonArrayExamples) {
+            expect(getArrayDepth(example)).toEqual(0);
+        }
+    });
+});
 
 describe('getDepth', () => {
     it('returns n for an array of depth n', () => {
@@ -226,9 +276,19 @@ describe('compare', () => {
             dataTypeExample2: {key1: 'value 3', key2: 'value 4'},
         },
         {
+            dataTypeName: 'Key-Value Object (POJO) (different lengths)',
+            dataTypeExample1: {key1: 'value 1', key2: 'value 2'},
+            dataTypeExample2: {key1: 'value 1', key2: 'value 2', key3: 'value 5'},
+        },
+        {
             dataTypeName: 'Array',
             dataTypeExample1: ['value 1', 'value 2'],
             dataTypeExample2: ['value 3', 'value 4'],
+        },
+        {
+            dataTypeName: 'Array (different lengths)',
+            dataTypeExample1: ['value 1', 'value 2'],
+            dataTypeExample2: ['value 1', 'value 2', 'value 5'],
         },
         {
             dataTypeName: 'Array vs String',
