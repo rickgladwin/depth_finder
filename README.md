@@ -2,6 +2,9 @@
 
 A simple utility to calculate the depth of arrays, key-value objects, etc.
 
+![coverage: 100%](https://img.shields.io/badge/coverage-100%25-brightgreen) ![version: 1.0.0](https://img.shields.io/badge/version-1.0.0-blue)
+
+
 ## Definitions
 ### Array Depth
 
@@ -20,8 +23,33 @@ Strings, numbers, etc. are defined as zero.
 - `npm install`
 
 ## Tests
-- `npm install -g jest` (if you don't have jest installed globally, you may need to run this) 
-- `npm run test`
+
+### Setup
+```bash
+npm install -g jest
+```
+(if you don't have jest installed globally, you may need to run this) 
+
+### Default
+```bash
+npm run test
+```
+
+### Verbose with Coverage Report
+```bash
+npm run test -- --verbose --coverage
+```
+An interactive coverage report should be generated at `<repo root>/coverage/lcov-report/index.html`
+
+If you don't have `lcov` installed, you can install it on Mac:
+```bash
+brew install lcov
+```
+or Ubuntu/Linux:
+```bash
+sudo apt update
+sudo apt install lcov
+```
 
 ## Notes:
 - The `depth_finder_mongoose` module has mongoose as a dependency,
