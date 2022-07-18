@@ -55,7 +55,6 @@ export const isKeyValueObject = (testObject: unknown) => {
  * String
  * Symbol
  * Date
- * mongoose.Types.ObjectId
  * Key-value object (POJO)
  * Array
  */
