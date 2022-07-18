@@ -3,12 +3,11 @@ import { Types } from "mongoose";
 // Types that can be handled successfully by the getDepth() function.
 // Add a new set of expectations to helpers.test.ts for additional types
 // before adding the new types here.
-type fathomableObject =
+type FathomableObject =
     string | number | boolean | null | Types.ObjectId | {} |
     (string | number | boolean | null | Types.ObjectId | object)[] |
     {[key: string]: (string | number | boolean | null | Types.ObjectId | {[key: string]: (string | number | boolean | null | Types.ObjectId)})} |
     {[key: number]: (string | number | boolean | null | Types.ObjectId | {[key: number]: (string | number | boolean | null | Types.ObjectId)})}
-
 
 /**
  * Gets the depth of an Array (maximum level of nesting for all elements)
@@ -24,7 +23,7 @@ export const getArrayDepth = (testObject: unknown): number => {
  * Arrays or key:value objects have depth equal to their max nesting level
  * Other types (number, string, etc.) have depth 0
  */
-export const getDepth = (testObject: fathomableObject): number => {
+export const getDepth = (testObject: FathomableObject): number => {
     // console.log(`#### getDepth called on`, testObject);
     if (isKeyValueObject(testObject)) {
         testObject = objectValuesToArray(testObject)
@@ -113,7 +112,7 @@ export const isDate = (item: any): boolean => {
  * Recursive function to convert an object to an array
  * Object values are used as array elements, keys are discarded
  */
-const objectValuesToArray = (theObject: fathomableObject) => {
+const objectValuesToArray = (theObject: FathomableObject) => {
     // console.log(`$$$$ objectValuesToArray called on`, theObject);
     if (isKeyValueObject(theObject)) {
         let returnArray: any[] = [];

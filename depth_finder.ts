@@ -2,7 +2,7 @@
 // Types that can be handled successfully by the getDepth() function.
 // Add a new set of expectations to helpers.test.ts for additional types
 // before adding the new types here.
-type fathomableObject =
+type FathomableObject =
     string | number | boolean | null | {} |
     (string | number | boolean | null | object)[] |
     {[key: string]: (string | number | boolean | null | {[key: string]: (string | number | boolean | null)})} |
@@ -23,7 +23,7 @@ export const getArrayDepth = (testObject: unknown): number => {
  * Arrays or key:value objects have depth equal to their max nesting level
  * Other types (number, string, etc.) have depth 0
  */
-export const getDepth = (testObject: fathomableObject): number => {
+export const getDepth = (testObject: FathomableObject): number => {
     // console.log(`#### getDepth called on`, testObject);
     if (isKeyValueObject(testObject)) {
         testObject = objectValuesToArray(testObject)
@@ -76,7 +76,7 @@ export const compare = (item1: any, item2: any) => {
             }
         }
     } else if (typeof item1 === 'object' && typeof item2 === 'object') {
-        if (item1.length !== item2.length) {
+        if (Object.keys(item1).length !== Object.keys(item2).length) {
             comparisonResult = false;
         } else {
             // get an array of [key,value] arrays
@@ -94,7 +94,17 @@ export const compare = (item1: any, item2: any) => {
                 }
             }
         }
+    } else if (typeof item1 === 'symbol' && typeof item2 === 'symbol') {
+        // NOTE: symbols are unique, even if they are constructed using an identical seed, e.g.
+        // let symbol1 = Symbol('one');
+        // let symbol2 = Symbol('one');
+        // symbol1 == symbol1 // true
+        // symbol1 == symbol2 // false
+        // symbol1 === symbol1 // true
+        // symbol1 === symbol1 // false
+        return item1 === item2
     } else {
+        console.log(`Object.is(${item1}, ${item2}) = ${Object.is(item1, item2)}`);
         comparisonResult = Object.is(item1, item2)
     }
     return comparisonResult
@@ -110,7 +120,7 @@ export const isDate = (item: any): boolean => {
  * Recursive function to convert an object to an array
  * Object values are used as array elements, keys are discarded
  */
-const objectValuesToArray = (theObject: fathomableObject) => {
+const objectValuesToArray = (theObject: FathomableObject) => {
     // console.log(`$$$$ objectValuesToArray called on`, theObject);
     if (isKeyValueObject(theObject)) {
         let returnArray: any[] = [];
