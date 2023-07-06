@@ -101,7 +101,7 @@ export const compare = (item1: any, item2: any) => {
         // symbol1 == symbol1 // true
         // symbol1 == symbol2 // false
         // symbol1 === symbol1 // true
-        // symbol1 === symbol1 // false
+        // symbol1 === symbol2 // false
         return item1 === item2
     } else {
         console.log(`Object.is(${item1}, ${item2}) = ${Object.is(item1, item2)}`);
