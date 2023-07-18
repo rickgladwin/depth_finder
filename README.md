@@ -1,6 +1,6 @@
 # Depth Finder
 
-A simple utility to calculate the depth of arrays, key-value objects, etc.
+A simple utility to calculate the depth of arrays, key-value objects, etc. and for deep/nested object comparison.
 
 ![coverage: 100%](https://img.shields.io/badge/coverage-100%25-brightgreen) ![version: 1.0.1](https://img.shields.io/badge/version-1.0.1-blue)
 
